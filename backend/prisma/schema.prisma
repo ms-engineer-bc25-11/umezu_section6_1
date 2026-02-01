@@ -1,0 +1,40 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql" // MySQLを使う場合はここを "mysql" に変えます
+  url      = env("DATABASE_URL")
+}
+
+model Profile {
+  id        Int      @id @default(autoincrement())
+  name      String
+  bio       String?
+  imageUrl  String?  // 画像データはURL（またはDBのString型）で保持
+  updatedAt DateTime @updatedAt
+}
+
+model Work {
+  id          Int      @id @default(autoincrement())
+  title       String
+  description String
+  imageUrl    String?
+  link        String?
+  createdAt   DateTime @default(now())
+}
+
+model Skill {
+  id    Int    @id @default(autoincrement())
+  name  String
+  level String // 例: "Beginner", "Advanced"
+}
+
+model contact {
+  id             Int      @id @default(autoincrement())  
+  description    String
+  name           String
+  email          String
+  comment        String?
+  createdAt      DateTime @default(now())
+}
