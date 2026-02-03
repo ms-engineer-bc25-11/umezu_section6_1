@@ -3,8 +3,7 @@ generator client {
 }
 
 datasource db {
-  provider = "postgresql" // MySQLを使う場合はここを "mysql" に変えます
-  url      = env("DATABASE_URL")
+  provider = "mysql"
 }
 
 model Profile {
