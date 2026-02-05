@@ -1,0 +1,6 @@
+{
+  "version": 3,
+  "sources": [],
+  "sections": [
+    {"offset": {"line": 16, "column": 0}, "map": {"version":3,"sources":["turbopack:///[project]/bootcamp/umezu_section6_1/frontend/src/middleware.ts"],"sourcesContent":["import { NextResponse } from 'next/server'\nimport type { NextRequest } from 'next/server'\n\n// この門番が守る範囲（設定）\nexport const config = {\n  matcher: ['/admin/:path*'], // 「/admin」から始まるページは全部チェック！\n}\n\nexport function middleware(request: NextRequest) {\n  // 本来はここでFirebaseのトークンを確認しますが、\n  // まずは「仕組み」を理解するために、仮のルールを作ります。\n  \n  const isLoggedIn = request.cookies.get('isLoggedIn'); // クッキーがあるか確認\n\n  // もし「/admin」に行こうとしているのに、ログインしていなかったら\n  if (!isLoggedIn) {\n    // ログイン画面へ強制送還！\n    return NextResponse.redirect(new URL('/login', request.url))\n  }\n\n  return NextResponse.next()\n}"],"names":[],"mappings":";;;;;;AAAA;AAAA;;AAIO,MAAM,SAAS;IACpB,SAAS;QAAC;KAAgB;AAC5B;AAEO,SAAS,WAAW,OAAoB;IAC7C,8BAA8B;IAC9B,+BAA+B;IAE/B,MAAM,aAAa,QAAQ,OAAO,CAAC,GAAG,CAAC,eAAe,aAAa;IAEnE,qCAAqC;IACrC,IAAI,CAAC,YAAY;QACf,eAAe;QACf,OAAO,4OAAY,CAAC,QAAQ,CAAC,IAAI,IAAI,UAAU,QAAQ,GAAG;IAC5D;IAEA,OAAO,4OAAY,CAAC,IAAI;AAC1B"}}]
+}

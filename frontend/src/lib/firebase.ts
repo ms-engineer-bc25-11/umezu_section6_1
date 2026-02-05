@@ -1,5 +1,5 @@
-import { initializeApp, getApps, getApp } from "firebase/app";
-import { getAuth } from "firebase/auth";
+import { initializeApp, getApp, getApps } from "firebase/app"; // 💡インポートを追加
+import { getAuth } from "firebase/auth"; // 💡インポートを追加
 
 // .env.localから設定を読み込む
 const firebaseConfig = {
@@ -11,8 +11,9 @@ const firebaseConfig = {
   appId: process.env.NEXT_PUBLIC_FIREBASE_APP_ID,
 };
 
-// すでに初期化されていたらそれを使い、なければ新しく初期化する(Next.js特有の書き方)
+// 💡 既に初期化されていたらそれを使い、なければ新しく初期化する
+// (Next.jsのホットリロードで二重に初期化されるのを防ぐお作法です)
 const app = !getApps().length ? initializeApp(firebaseConfig) : getApp();
 
-// 認証機能（Auth）をエクスポート
+// 💡 「auth」という名前でエクスポートします
 export const auth = getAuth(app);
